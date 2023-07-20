@@ -1,0 +1,69 @@
+id: https://w3id.org/linkml/examples/nwb_static_enums
+title: static enums example
+name: nwb_static_enums
+description: this schema demonstrates the use of static enums
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  CL: http://purl.obolibrary.org/obo/cl.owl
+
+imports:
+  - linkml:types
+
+default_range: string
+
+# ======================== #
+#         CLASSES          #
+# ======================== #
+classes:
+  BrainSample:
+    slots:
+      - cell_type
+
+# ======================== #
+#          SLOTS           #
+# ======================== #
+slots:
+  cell_type:
+    required: true
+    any_of:
+      - range: NeuronTypeEnum
+      - range: GlialCellTypeEnum
+
+# ======================== #
+#          ENUMS           #
+# ======================== #
+enums:
+  NeuronTypeEnum:
+    permissible_values:
+      PYRAMIDAL_NEURON:
+        description: >- 
+          Neurons with a pyramidal shaped cell body (soma) and two distinct dendritic trees.
+        meaning: CL:0000598
+      INTERNEURON:
+        description: Neurons whose axons (and dendrites) are limited to a single brain area.
+        meaning: CL:0000099
+      MOTOR_NEURON:
+        description: >-
+          Neurons whose cell body is located in the motor cortex, brainstem or the spinal cord, 
+          and whose axon (fiber) projects to the spinal cord or outside of the spinal cord to directly 
+          or indirectly control effector organs, mainly muscles and glands.
+        meaning: CL:0000100
+      # add more neuron types as needed
+  
+  GlialCellTypeEnum:
+    permissible_values:
+      ASTROCYTE:
+        description: Characteristic star-shaped glial cells in the brain and spinal cord. 
+        meaning: CL:0000127
+      OLIGODENDROCYTE:
+        description: >- 
+          Type of neuroglia whose main functions are to provide support and insulation to axons 
+          within the central nervous system (CNS) of jawed vertebrates.
+        meaning: CL:0000128
+      MICROGLIAL_CELL:
+        description: >- 
+          Microglia — from micro (small) and glia (glue) — are the resident immune cells of the brain 
+          and constantly patrol the cerebral microenvironment to respond to pathogens and damage.
+        meaning: CL:0000129
+      # add more glial cell types as needed
