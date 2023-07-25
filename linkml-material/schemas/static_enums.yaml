@@ -26,15 +26,14 @@ classes:
 slots:
   cell_type:
     required: true
-    any_of:
-      - range: NeuronTypeEnum
-      - range: GlialCellTypeEnum
+    range: NeuronOrGlialCellTypeEnum
 
 # ======================== #
 #          ENUMS           #
 # ======================== #
 enums:
-  NeuronTypeEnum:
+  NeuronOrGlialCellTypeEnum:
+    description: Enumeration to capture various cell types found in the brain.
     permissible_values:
       PYRAMIDAL_NEURON:
         description: >- 
@@ -49,10 +48,7 @@ enums:
           and whose axon (fiber) projects to the spinal cord or outside of the spinal cord to directly 
           or indirectly control effector organs, mainly muscles and glands.
         meaning: CL:0000100
-      # add more neuron types as needed
-  
-  GlialCellTypeEnum:
-    permissible_values:
+      # add more neuron types as needed  
       ASTROCYTE:
         description: Characteristic star-shaped glial cells in the brain and spinal cord. 
         meaning: CL:0000127
@@ -63,7 +59,7 @@ enums:
         meaning: CL:0000128
       MICROGLIAL_CELL:
         description: >- 
-          Microglia — from micro (small) and glia (glue) — are the resident immune cells of the brain 
-          and constantly patrol the cerebral microenvironment to respond to pathogens and damage.
+          Microglia are the resident immune cells of the brain and constantly patrol the cerebral 
+          microenvironment to respond to pathogens and damage.
         meaning: CL:0000129
       # add more glial cell types as needed

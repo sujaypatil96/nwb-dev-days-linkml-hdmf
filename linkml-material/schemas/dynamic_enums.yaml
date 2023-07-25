@@ -26,9 +26,7 @@ classes:
 slots:
   cell_type:
     required: true
-    any_of:
-      - range: NeuronTypeEnum
-      - range: GlialCellTypeEnum
+    range: NeuronOrGlialCellTypeEnum
 
 # ======================== #
 #          ENUMS           #
@@ -51,3 +49,8 @@ enums:
       include_self: false
       relationship_types:
         - rdfs:subClassOf
+
+  NeuronOrGlialCellTypeEnum:
+    inherits:
+      - NeuronTypeEnum
+      - GlialCellTypeEnum
