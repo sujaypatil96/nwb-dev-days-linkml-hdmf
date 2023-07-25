@@ -1,0 +1,55 @@
+name: nwb_static_enums
+description: this schema demonstrates the use of static enums
+title: static enums example
+id: https://w3id.org/linkml/examples/nwb_static_enums
+imports:
+- linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  CL: http://purl.obolibrary.org/obo/cl.owl
+  TEMP: https://example.org/TEMP/
+default_prefix: TEMP
+default_range: string
+enums:
+  NeuronOrGlialCellTypeEnum:
+    description: Enumeration to capture various cell types found in the brain.
+    from_schema: https://w3id.org/linkml/examples/nwb_static_enums
+    permissible_values:
+      PYRAMIDAL_NEURON:
+        description: Neurons with a pyramidal shaped cell body (soma) and two distinct
+          dendritic trees.
+        meaning: CL:0000598
+      INTERNEURON:
+        description: Neurons whose axons (and dendrites) are limited to a single brain
+          area.
+        meaning: CL:0000099
+      MOTOR_NEURON:
+        description: Neurons whose cell body is located in the motor cortex, brainstem
+          or the spinal cord, and whose axon (fiber) projects to the spinal cord or
+          outside of the spinal cord to directly or indirectly control effector organs,
+          mainly muscles and glands.
+        meaning: CL:0000100
+      ASTROCYTE:
+        description: Characteristic star-shaped glial cells in the brain and spinal
+          cord.
+        meaning: CL:0000127
+      OLIGODENDROCYTE:
+        description: Type of neuroglia whose main functions are to provide support
+          and insulation to axons within the central nervous system (CNS) of jawed
+          vertebrates.
+        meaning: CL:0000128
+      MICROGLIAL_CELL:
+        description: Microglia are the resident immune cells of the brain and constantly
+          patrol the cerebral microenvironment to respond to pathogens and damage.
+        meaning: CL:0000129
+slots:
+  cell_type:
+    from_schema: https://w3id.org/linkml/examples/nwb_static_enums
+    required: true
+classes:
+  BrainSample:
+    from_schema: https://w3id.org/linkml/examples/nwb_static_enums
+    slots:
+    - cell_type
+    slot_usage:
+      cell_type: {}

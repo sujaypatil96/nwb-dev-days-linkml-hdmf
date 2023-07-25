@@ -1,5 +1,5 @@
 # Auto generated from static_enums.yaml by pythongen.py version: 0.9.0
-# Generation date: 2023-07-20T13:28:48
+# Generation date: 2023-07-25T11:51:06
 # Schema: nwb_static_enums
 #
 # id: https://w3id.org/linkml/examples/nwb_static_enums
@@ -21,7 +21,7 @@ from linkml_runtime.utils.formatutils import camelcase, underscore, sfx
 from linkml_runtime.utils.enumerations import EnumDefinitionImpl
 from rdflib import Namespace, URIRef
 from linkml_runtime.utils.curienamespace import CurieNamespace
-from linkml_runtime.linkml_model.types import String
+
 
 metamodel_version = "1.7.0"
 version = None
@@ -50,20 +50,22 @@ class BrainSample(YAMLRoot):
     class_name: ClassVar[str] = "BrainSample"
     class_model_uri: ClassVar[URIRef] = URIRef("https://w3id.org/linkml/examples/nwb_static_enums/BrainSample")
 
-    cell_type: str = None
+    cell_type: Union[str, "NeuronOrGlialCellTypeEnum"] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.cell_type):
             self.MissingRequiredField("cell_type")
-        if not isinstance(self.cell_type, str):
-            self.cell_type = str(self.cell_type)
+        if not isinstance(self.cell_type, NeuronOrGlialCellTypeEnum):
+            self.cell_type = NeuronOrGlialCellTypeEnum(self.cell_type)
 
         super().__post_init__(**kwargs)
 
 
 # Enumerations
-class NeuronTypeEnum(EnumDefinitionImpl):
-
+class NeuronOrGlialCellTypeEnum(EnumDefinitionImpl):
+    """
+    Enumeration to capture various cell types found in the brain.
+    """
     PYRAMIDAL_NEURON = PermissibleValue(
         text="PYRAMIDAL_NEURON",
         description="Neurons with a pyramidal shaped cell body (soma) and two distinct dendritic trees.",
@@ -76,13 +78,6 @@ class NeuronTypeEnum(EnumDefinitionImpl):
         text="MOTOR_NEURON",
         description="""Neurons whose cell body is located in the motor cortex, brainstem or the spinal cord,  and whose axon (fiber) projects to the spinal cord or outside of the spinal cord to directly  or indirectly control effector organs, mainly muscles and glands.""",
         meaning=CL["0000100"])
-
-    _defn = EnumDefinition(
-        name="NeuronTypeEnum",
-    )
-
-class GlialCellTypeEnum(EnumDefinitionImpl):
-
     ASTROCYTE = PermissibleValue(
         text="ASTROCYTE",
         description="Characteristic star-shaped glial cells in the brain and spinal cord.",
@@ -93,11 +88,12 @@ class GlialCellTypeEnum(EnumDefinitionImpl):
         meaning=CL["0000128"])
     MICROGLIAL_CELL = PermissibleValue(
         text="MICROGLIAL_CELL",
-        description="""Microglia — from micro (small) and glia (glue) — are the resident immune cells of the brain  and constantly patrol the cerebral microenvironment to respond to pathogens and damage.""",
+        description="""Microglia are the resident immune cells of the brain and constantly patrol the cerebral  microenvironment to respond to pathogens and damage.""",
         meaning=CL["0000129"])
 
     _defn = EnumDefinition(
-        name="GlialCellTypeEnum",
+        name="NeuronOrGlialCellTypeEnum",
+        description="Enumeration to capture various cell types found in the brain.",
     )
 
 # Slots
@@ -105,4 +101,4 @@ class slots:
     pass
 
 slots.cell_type = Slot(uri=DEFAULT_.cell_type, name="cell_type", curie=DEFAULT_.curie('cell_type'),
-                   model_uri=DEFAULT_.cell_type, domain=None, range=str)
+                   model_uri=DEFAULT_.cell_type, domain=None, range=Union[str, "NeuronOrGlialCellTypeEnum"])
